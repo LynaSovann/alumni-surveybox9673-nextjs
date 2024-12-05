@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: alumni-surveybox9673-nextjs-certificate
+  namespace: alumni-surveybox9673-nextjs
+spec:
+  secretName: alumni-surveybox9673-nextjs-secret-tls
+  commonName: alumni-surveybox9673-nextjs.assessify.org
+  dnsNames:
+  - alumni-surveybox9673-nextjs.assessify.org
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
