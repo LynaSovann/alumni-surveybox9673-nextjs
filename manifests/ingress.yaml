@@ -1,0 +1,30 @@
+ apiVersion: networking.k8s.io/v1
+ kind: Ingress
+ metadata:
+   name: alumni-surveybox9673-nextjs-https-ingress
+   namespace: alumni-surveybox9673-nextjs
+   annotations:
+     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+     nginx.ingress.kubernetes.io/use-regex: "true"
+     nginx.ingress.kubernetes.io/proxy-body-size: "5g"    
+     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+     nginx.ingress.kubernetes.io/rewrite-target: /
+ spec:
+   ingressClassName: nginx
+   tls:
+     - hosts:
+         - alumni-surveybox9673-nextjs.assessify.org
+       secretName: alumni-surveybox9673-nextjs-secret-tls
+   rules:
+     - host: alumni-surveybox9673-nextjs.assessify.org
+       http:
+         paths:
+           - path: /
+             pathType: Prefix
+             backend:
+               service:
+                 name: alumni-surveybox9673-nextjs-service
+                 port:
+                   number: 8339
+ 
