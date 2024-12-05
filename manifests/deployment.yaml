@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alumni-surveybox9673-nextjs-deployment
+  labels:
+    app: alumni-surveybox9673-nextjs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alumni-surveybox9673-nextjs
+  template:
+    metadata:
+      labels:
+        app: alumni-surveybox9673-nextjs
+    spec:
+      containers:
+        - name: alumni-surveybox9673-nextjs-container
+          image: pipejet/alumni-surveybox9673-nextjs:latest
+          ports:
+            - containerPort: 5173
